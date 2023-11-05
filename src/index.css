@@ -14,13 +14,28 @@ a{background-color:transparent;-webkit-transition:all .2s;-moz-transition:all .2
 a:active,a:focus,a:hover{outline:0;color:var(--red);text-decoration:underline}
 b,strong,.bold,.strong{font-family: 'RedHatText', sans-serif;font-weight:600}
 h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{font-family: 'RedHatText', sans-serif;font-weight:600;line-height:1.4em;margin-top:1em;margin-bottom:.8em;color:var(--black);position:relative;display:block}
-h1,.h1{font-size:24px}
+h1,.h1{font-size:24px;margin:0}
 h2,.h2{font-size:22px}
 h3,.h3{font-size:20px}
 h4,.h4{font-size:18px}
 h5,.h5{font-size:16px}
 h6,.h6{font-size:14px}
-#result{padding: 16px 32px}
+#result{padding: 32px}
+.align-right{text-align:right;}
+.w-100{width:100%;max-width:100%}
+.w-180p{width:180px;max-width:100%}
+
+@media only screen and (max-width: 48em) {
+	body{font-size:14px;}
+	h1,.h1{font-size:22px;text-align:center;}
+	h2,.h2{font-size:20px;text-align:center;}
+	h3,.h3{font-size:18px;text-align:center;}
+	h4,.h4{font-size:16px;text-align:center;}
+	h5,.h5{font-size:14px;text-align:center;}
+	h6,.h6{font-size:12px;text-align:center;}
+	#result{padding: 16px;}
+	}
+
 .col-pad-0 > div[class^="col"], .col-pad-0 > div[class*=' col'], .col-xs-pad-0 > div[class^="col"], .col-xs-pad-0 > div[class*=' col']{padding: 0px}
 .col-pad-4 > div[class^="col"], .col-pad-4 > div[class*=' col'], .col-xs-pad-4 > div[class^="col"], .col-xs-pad-4 > div[class*=' col']{padding: 4px}
 .col-pad-8 > div[class^="col"], .col-pad-8 > div[class*=' col'], .col-xs-pad-8 > div[class^="col"], .col-xs-pad-8 > div[class*=' col']{padding: 8px}
@@ -122,6 +137,7 @@ h6,.h6{font-size:14px}
 .pad-left-32, .pad-xs-left-32, .pad-x-32, .pad-xs-x-32{padding-left: 32px !important}
 .pad-left-64, .pad-xs-left-64, .pad-x-64, .pad-xs-x-64{padding-left: 64px !important}
 .pad-left-128, .pad-xs-left-128, .pad-x-128, .pad-xs-x-128{padding-left: 128px !important}
+
 @media only screen and (min-width: 48em) {
   .col-sm-pad-0 > div[class^="col"], .col-sm-pad-0 > div[class*=' col']{padding: 0px}
   .col-sm-pad-4 > div[class^="col"], .col-sm-pad-4 > div[class*=' col']{padding: 4px}

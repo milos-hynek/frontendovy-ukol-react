@@ -33,13 +33,13 @@ const ShoppingListDetail=(props)=>{
 		<div className="shoppingListDetail">
 			<h2>{shoppingList.name}</h2>
 			<p>{shoppingList.description}</p>
-			<h3>Položky:</h3>
+			<h3>Položky</h3>
 			
-			<h3>Členové:</h3>
+			<h3>Členové</h3>
 			<div className="row">
 				<div className="shoppingListOwner col-xs-12 col-sm-6 col-md-3">
 					<div className="shoppingListOwnerInner">
-						{usersById[props.currentUser].degree} {usersById[props.currentUser].name}	{usersById[props.currentUser].surname}  (vlastník)
+						{usersById[props.shoppingList.id_owner].degree} {usersById[props.shoppingList.id_owner].name}	{usersById[props.shoppingList.id_owner].surname}  (vlastník)
 					</div>
 				</div>
 				{shoppingList.shopping_list_members.map((member:{...})=>(

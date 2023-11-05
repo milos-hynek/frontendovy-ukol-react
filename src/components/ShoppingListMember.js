@@ -1,5 +1,5 @@
 import "./ShoppingListMember.css";
-
+import {useState} from "react"
 
 const ShoppingListMember=(props)=>{
 	if(props.users===undefined){
@@ -8,12 +8,23 @@ const ShoppingListMember=(props)=>{
 	if(props.member===undefined){
 		return(<></>);
 		}	
+	let delButton='';	
+	if(props.currentUser===props.owner||props.currentUser===props.member.id_user){ // owner can delete everyone, member can delete only himself				
+		let delMember=(event)=>{       
+      if(window.confirm("Opravdu si přejete odebrat tohoto člena?")){
+		    props.callbackDelMember(props.member.slmid);     	
+		    }
+      event.preventDefault();
+	    }	
+		delButton=<button onClick={delMember} title="Odebrat člena" >&#10007;</button>;			
+		}		
 	if(props.users[props.member.id_user]!==undefined){						
 		return(
-			<div className="shoppingListMember">
-				<h4>{props.users[props.member.id_user].name} {props.users[props.member.id_user].surname} {props.users[props.member.id_user].degree} </h4>
-				
-				
+			<div className="shoppingListMember col-xs-12 col-sm-6 col-md-3 ">
+				<div className="shoppingListMemberInner">
+					<div className="SLMname">{props.users[props.member.id_user].degree} {props.users[props.member.id_user].name} {props.users[props.member.id_user].surname}</div>
+					<div className="SLMdelButton">{delButton}</div>
+				</div>
 			</div>
 			);
 		}	

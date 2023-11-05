@@ -29,10 +29,12 @@ const App=()=>{
 			{slmid:62,id_shopping_list:7,id_user:10}
 			]
 		};
-	let current_user=3;
+	let current_user=3;	
 	return(
 		<>
-			<h1>Domácí úkol 2 - Detail nákupního seznamu / Frontendové systémy</h1>
+			<h1>Domácí úkol 2 - Detail nákupního seznamu / Frontendové systémy / Miloš Hynek</h1>
+			
+			
 			<ShoppingListDetail shoppingList={INITIAL_SHOPPING_LIST_DETAIL} users={INITIAL_USERS} currentUser={current_user} />
 		</>
 		);

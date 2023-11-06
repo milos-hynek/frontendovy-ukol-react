@@ -1,5 +1,6 @@
 import "./ShoppingListDetail.css";
 import ShoppingListEdit from "./ShoppingListEdit.js";
+import ShoppingListItem from "./ShoppingListItem.js";
 import ShoppingListMember from "./ShoppingListMember.js";
 import ShoppingListAddMember from "./ShoppingListAddMember.js";
 import {useState} from "react"
@@ -33,6 +34,43 @@ const ShoppingListDetail=(props)=>{
 		setShoppingList(updatedShoppingList);			
 		refresh();		
 		}
+		
+	//change some item status from shopping list
+	let callbackChangeStatusItem=(id)=>{	
+		let completeSolved=1;
+		shoppingList.shopping_list_items.forEach((item,index)=>{ 	
+			
+			if(item.sliid===id){
+					if(item.is_solved===1){
+						shoppingList.shopping_list_items[index].is_solved=0;
+					}else{
+						shoppingList.shopping_list_items[index].is_solved=1;
+					}					
+				}	
+			if(shoppingList.shopping_list_items[index].is_solved===0){
+				completeSolved=0;
+				}			
+			});
+		shoppingList.is_solved=completeSolved;
+		const updatedShoppingList=shoppingList;
+		setShoppingList(updatedShoppingList);		
+		refresh();		
+		}	
+	//Delete some item from shopping list
+	let callbackDeleteItem=(id)=>{					
+		
+		alert('delete item '+id);
+		/*shoppingList.shopping_list_members.forEach((member,index)=>{ 	
+			if(member.slmid===slmid){
+				shoppingList.shopping_list_members.splice(index,1);				
+				alert("Člen úspěšně odstraněn z nákupního seznamu.");	
+				}								
+			});				
+		const updatedShoppingList=shoppingList;
+		setShoppingList(updatedShoppingList);	
+		refresh();	*/	
+		}	
+		
 	//Delete some member from shopping list
 	let callbackDeleteMember=(slmid)=>{					
 		shoppingList.shopping_list_members.forEach((member,index)=>{ 	
@@ -70,13 +108,25 @@ const ShoppingListDetail=(props)=>{
 		archived="(archivováno)";
 		}
 	
+	let solved="";
+	if(shoppingList.is_solved===1){
+		solved="- dokončeno";
+		}
+	
 	return(
 		<div className="shoppingListDetail">
-			<h2>{shoppingList.name} {archived}</h2>
+			<h2>{shoppingList.name} {solved} {archived}</h2>
 			<p>{shoppingList.description}</p>
 			<ShoppingListEdit shoppingList={shoppingList} currentUser={props.currentUser} owner={shoppingList.id_owner} callbackSaveShoppingList={callbackSaveShoppingList} />	
-			<h3>Položky</h3>
-			
+			<div className="row pad-top-8 pad-bottom-16">
+				<div className="col-xs-12 col-sm-6 col-md-6"><h3 class="gap-0	">Položky</h3></div>
+				<div className="col-xs-12 col-sm-6 col-md-6 align-right">#todo - filtr polozek</div>
+			</div>
+			<div className="row">
+				{shoppingList.shopping_list_items.map((item:{...})=>(
+					<ShoppingListItem key={item.sliid} item={item} currentUser={props.currentUser} owner={shoppingList.id_owner} callbackDelItem={callbackDeleteItem} callbackChangeStatusItem={callbackChangeStatusItem} />
+					))}
+			</div>
 			<h3>Členové</h3>
 			<div className="row">
 				<div className="shoppingListOwner col-xs-12 col-sm-6 col-md-3">
@@ -88,8 +138,7 @@ const ShoppingListDetail=(props)=>{
 					<ShoppingListMember key={member.slmid} member={member} users={usersById} currentUser={props.currentUser} owner={shoppingList.id_owner} callbackDelMember={callbackDeleteMember} />
 					))}
 				<ShoppingListAddMember members={membersById} users={usersById} currentUser={props.currentUser} owner={shoppingList.id_owner} callbackAddMember={callbackAddMember} />	
-			</div>
-			
+			</div>			
 		</div>
 		);	
 	};

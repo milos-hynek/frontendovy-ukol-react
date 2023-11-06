@@ -9,7 +9,7 @@
 }
 *,:after,:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;filter:inherit}
 html{font-size:100%;line-height:1.2em;-webkit-text-size-adjust:100%;-moz-text-size-adjust:100%;-ms-text-size-adjust:100%;word-wrap:break-word;overflow-wrap:break-word}
-body{margin:0;font-family: 'RedHatText', sans-serif;font-size:16px; min-width:300px;}
+body{margin:0;font-family: 'RedHatText', sans-serif;font-size:16px; min-width:320px;}
 a{background-color:transparent;-webkit-transition:all .2s;-moz-transition:all .2s;-o-transition:all .2s;transition:all .2s;color:inherit;color:var(--blue);cursor:pointer;text-decoration:none}
 a:active,a:focus,a:hover{outline:0;color:var(--red);text-decoration:underline}
 b,strong,.bold,.strong{font-family: 'RedHatText', sans-serif;font-weight:600}

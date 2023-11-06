@@ -34,8 +34,7 @@ const INITIAL_SHOPPING_LIST_DETAIL={
 		{slmid:62,id_shopping_list:7,id_user:10}
 		]
 	};		
-const App=()=>{
-	
+const App=()=>{	
 	//component rendering updates:
 	const [updateMain,setUpdateMain]=useState(0);
 	const refreshMain=()=>{setUpdateMain(updateMain+1);}

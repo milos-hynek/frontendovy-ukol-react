@@ -64,7 +64,7 @@ const App=()=>{
 			<br /><br />
 			<h2>Přehled dat uživatelů v&nbsp;systému <small>(za&nbsp;účelem testování výše uvedené komponenty)</small></h2>
 			{INITIAL_USERS.map((user:{...})=>
-				(<div>#{user.uid} - {user.degree} {user.name} {user.surname} - {user.email}</div>)
+				(<div key={user.uid}>#{user.uid} - {user.degree} {user.name} {user.surname} - {user.email}</div>)
 			)}	
 			
 		</>

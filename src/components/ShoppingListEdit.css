@@ -1,4 +1,4 @@
-.show-edit-shopping-list{display:block;}
+.show-edit-shopping-list{display:block;margin-bottom:16px}
 .hide-edit-shopping-list{display:none;}
 .shopingListEditForm h3{text-align:center;}
 button.sl-toggle{height:35px;font-size:16px;padding:4px;cursor:pointer;}

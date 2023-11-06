@@ -5,6 +5,8 @@ import ShoppingListMember from "./ShoppingListMember.js";
 import ShoppingListAddMember from "./ShoppingListAddMember.js";
 import {useState} from "react"
 
+let filterItems=2; // all of them defaul	
+
 const ShoppingListDetail=(props)=>{
 	//helping array for users:
 	let usersById=[];
@@ -112,26 +114,38 @@ const ShoppingListDetail=(props)=>{
 	if(shoppingList.is_solved===1){
 		solved="- dokončeno";
 		}
+		
+	let doFilterUnsolved=(event)=>{filterItems=0;refresh();}
+	let doFilterSolved=(event)=>{filterItems=1;refresh();}
+	let doFilterAll=(event)=>{filterItems=2;refresh();}
+		
+	let filterUnsolved=<button onClick={doFilterUnsolved} title="Vypsat pouze nevyřešené položky">Nevyřešené</button>;
+	let filterSolved=<button onClick={doFilterSolved} title="Vypsat pouze vyřešené položky">Vyřešené</button>;
+	let filterAll=<button onClick={doFilterAll} title="Vypsat všechny položky">Vše</button>;
+	
+	if(filterItems===0){filterUnsolved=<button onClick={doFilterUnsolved} title="Vypsat pouze nevyřešené položky" className="activeFilter">Nevyřešené</button>;}
+	if(filterItems===1){filterSolved=<button onClick={doFilterSolved} title="Vypsat pouze vyřešené položky" className="activeFilter">Vyřešené</button>;}
+	if(filterItems===2){filterAll=<button onClick={doFilterAll} title="Vypsat všechny položky" className="activeFilter">Vše</button>;}
 	
 	return(
 		<div className="shoppingListDetail">
 			<h2>{shoppingList.name} {solved} {archived}</h2>
 			<p>{shoppingList.description}</p>
 			<ShoppingListEdit shoppingList={shoppingList} currentUser={props.currentUser} owner={shoppingList.id_owner} callbackSaveShoppingList={callbackSaveShoppingList} />	
-			<div className="row pad-top-8 pad-bottom-16">
-				<div className="col-xs-12 col-sm-6 col-md-6"><h3 class="gap-0	">Položky</h3></div>
-				<div className="col-xs-12 col-sm-6 col-md-6 align-right">#todo - filtr polozek</div>
+			<div className="row pad-top-8 middle-md middle-sm middle-xs">
+				<div className="col-xs-12 col-sm-6 col-md-6"><h3 className="gap-left-0">Položky</h3></div>
+				<div className="col-xs-12 col-sm-6 col-md-6 align-right"> {filterUnsolved} {filterSolved} {filterAll} </div>
 			</div>
 			<div className="row">
 				{shoppingList.shopping_list_items.map((item:{...})=>(
-					<ShoppingListItem key={item.sliid} item={item} currentUser={props.currentUser} owner={shoppingList.id_owner} callbackDelItem={callbackDeleteItem} callbackChangeStatusItem={callbackChangeStatusItem} />
+					<ShoppingListItem key={item.sliid} item={item} currentUser={props.currentUser} owner={shoppingList.id_owner} filter={filterItems} callbackDelItem={callbackDeleteItem} callbackChangeStatusItem={callbackChangeStatusItem} />
 					))}
 			</div>
 			<h3>Členové</h3>
 			<div className="row">
 				<div className="shoppingListOwner col-xs-12 col-sm-6 col-md-3">
 					<div className="shoppingListOwnerInner">
-						{usersById[shoppingList.id_owner].degree} {usersById[shoppingList.id_owner].name}	{usersById[shoppingList.id_owner].surname}  (vlastník)
+						<b>{usersById[shoppingList.id_owner].degree} {usersById[shoppingList.id_owner].name}	{usersById[shoppingList.id_owner].surname}</b>
 					</div>
 				</div>
 				{shoppingList.shopping_list_members.map((member:{...})=>(

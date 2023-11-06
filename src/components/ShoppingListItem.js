@@ -5,6 +5,13 @@ const ShoppingListItem=(props)=>{
 	if(props.item===undefined){
 		return(<></>);
 		}	
+	if(props.filter===0&&props.item.is_solved===1){
+		return(<></>);
+		}	
+	if(props.filter===1&&props.item.is_solved===0){
+		return(<></>);
+		}	
+		
 			
 	let changeStatus=(event)=>{ 
 		if(window.confirm("Opravdu si přejete změnit stav položky?")){
@@ -36,9 +43,7 @@ const ShoppingListItem=(props)=>{
 			}		
 		editButton=<td className="align-right" width="40"><button onClick={delItem} title="Upravit položku"  >&#128394;</button></td>;		
 		}			
-	
-	
-	
+			
 						
 	return(
 		<div className="shoppingListItem col-xs-12 col-sm-6 col-md-4 ">

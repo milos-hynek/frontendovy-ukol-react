@@ -1,4 +1,5 @@
 import "./ShoppingListDetail.css";
+import ShoppingListEdit from "./ShoppingListEdit.js";
 import ShoppingListMember from "./ShoppingListMember.js";
 import ShoppingListAddMember from "./ShoppingListAddMember.js";
 import {useState} from "react"
@@ -23,6 +24,15 @@ const ShoppingListDetail=(props)=>{
 		membersById[member.id_user]=member.id_user
 		));
 	
+	//Save shopping list
+	let callbackSaveShoppingList=(data)=>{
+		shoppingList.name=data.name;
+		shoppingList.description=data.description;
+		shoppingList.is_archived=data.is_archived;
+		const updatedShoppingList=shoppingList;
+		setShoppingList(updatedShoppingList);			
+		refresh();		
+		}
 	//Delete some member from shopping list
 	let callbackDeleteMember=(slmid)=>{					
 		shoppingList.shopping_list_members.forEach((member,index)=>{ 	
@@ -45,7 +55,7 @@ const ShoppingListDetail=(props)=>{
 		const updatedShoppingList=shoppingList;
 		setShoppingList(updatedShoppingList);			
 		refresh();		
-		}
+		}		
 	
 	if(parseInt(props.currentUser)===parseInt(shoppingList.id_owner)||parseInt(props.currentUser)===membersById[parseInt(props.currentUser)]){}else{ // only owner and member can see shopping list		
 		return (
@@ -55,17 +65,23 @@ const ShoppingListDetail=(props)=>{
 			);
 		}
 	
+	let archived="";
+	if(shoppingList.is_archived==1){
+		archived="(archivováno)";
+		}
+	
 	return(
 		<div className="shoppingListDetail">
-			<h2>{shoppingList.name}</h2>
+			<h2>{shoppingList.name} {archived}</h2>
 			<p>{shoppingList.description}</p>
+			<ShoppingListEdit shoppingList={shoppingList} currentUser={props.currentUser} owner={shoppingList.id_owner} callbackSaveShoppingList={callbackSaveShoppingList} />	
 			<h3>Položky</h3>
 			
 			<h3>Členové</h3>
 			<div className="row">
 				<div className="shoppingListOwner col-xs-12 col-sm-6 col-md-3">
 					<div className="shoppingListOwnerInner">
-						{usersById[props.shoppingList.id_owner].degree} {usersById[props.shoppingList.id_owner].name}	{usersById[props.shoppingList.id_owner].surname}  (vlastník)
+						{usersById[shoppingList.id_owner].degree} {usersById[shoppingList.id_owner].name}	{usersById[shoppingList.id_owner].surname}  (vlastník)
 					</div>
 				</div>
 				{shoppingList.shopping_list_members.map((member:{...})=>(

@@ -52,9 +52,9 @@ const ShoppingListEdit=(props)=>{
 						<div className="row">
 							<div className="col-xs-12 col-sm-12 col-md-12 "><h3>Upravení nákupního seznamu</h3></div>							
 							<div className="col-xs-12 col-sm-12 col-md-2 "><b>Název:</b></div>
-							<div className="col-xs-12 col-sm-12 col-md-10 "><input type="text" name="name" value={props.shoppingList.name} maxlength="128" className="w-100" onChange={changeName} required /></div>														
+							<div className="col-xs-12 col-sm-12 col-md-10 "><input type="text" name="name" value={props.shoppingList.name} maxLength="128" className="w-100" onChange={changeName} required /></div>														
 							<div className="col-xs-12 col-sm-12 col-md-2 "><b>Popis:</b></div>							
-							<div className="col-xs-12 col-sm-12 col-md-10 "><input type="text" name="description" value={props.shoppingList.description} maxlength="512" className="w-100" onChange={changeDescription} /></div>
+							<div className="col-xs-12 col-sm-12 col-md-10 "><input type="text" name="description" value={props.shoppingList.description} maxLength="512" className="w-100" onChange={changeDescription} /></div>
 							<div className="col-xs-12 col-sm-12 col-md-2 "><b>Archiv:</b></div>							
 							<div className="col-xs-12 col-sm-12 col-md-10 ">
 								<select name="is_archived" value={props.shoppingList.is_archived} className="w-100" onChange={changeArchiv} >

@@ -40,8 +40,7 @@ const ShoppingListDetail=(props)=>{
 	//change some item status from shopping list
 	let callbackChangeStatusItem=(id)=>{	
 		let completeSolved=1;
-		shoppingList.shopping_list_items.forEach((item,index)=>{ 	
-			
+		shoppingList.shopping_list_items.forEach((item,index)=>{ 				
 			if(item.sliid===id){
 					if(item.is_solved===1){
 						shoppingList.shopping_list_items[index].is_solved=0;
@@ -58,10 +57,26 @@ const ShoppingListDetail=(props)=>{
 		setShoppingList(updatedShoppingList);		
 		refresh();		
 		}	
+			
 	//Delete some item from shopping list
 	let callbackDeleteItem=(id)=>{					
-		
-		alert('delete item '+id);
+		let completeSolved=1;
+		shoppingList.shopping_list_items.forEach((item,index)=>{ 				
+				if(item.sliid===id){
+					shoppingList.shopping_list_items.splice(index,1);				
+					alert("Položka úspěšně odstraněna z nákupního seznamu.");	
+				}else{
+					if(shoppingList.shopping_list_items[index].is_solved===0){
+						completeSolved=0;
+						}	
+				}
+			});
+		shoppingList.is_solved=completeSolved;
+		shoppingList.is_solved=completeSolved;
+		const updatedShoppingList=shoppingList;
+		setShoppingList(updatedShoppingList);		
+		refresh();		
+
 		/*shoppingList.shopping_list_members.forEach((member,index)=>{ 	
 			if(member.slmid===slmid){
 				shoppingList.shopping_list_members.splice(index,1);				

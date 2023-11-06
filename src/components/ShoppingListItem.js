@@ -49,13 +49,15 @@ const ShoppingListItem=(props)=>{
 		<div className="shoppingListItem col-xs-12 col-sm-6 col-md-4 ">
 			<div className={shoppingListItemInner}>
 				<table className="w-100">
-					<tr>
-						{statusButton}
-						<td>{props.item.name}</td>
-						<td className="align-right">{props.item.value}</td>																								
-						{delButton}
-						{editButton}												
-					</tr>
+					<tbody>
+						<tr>
+							{statusButton}
+							<td>{props.item.name}</td>
+							<td className="align-right">{props.item.value}</td>																								
+							{delButton}
+							{editButton}												
+						</tr>
+					</tbody>
 				</table>
 			</div>
 		</div>

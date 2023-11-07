@@ -11,8 +11,7 @@ const ShoppingListItem=(props)=>{
 	if(props.filter===1&&props.item.is_solved===0){
 		return(<></>);
 		}	
-		
-			
+					
 	let changeStatus=(event)=>{ 
 		if(window.confirm("Opravdu si přejete změnit stav položky?")){
 		  props.callbackChangeStatusItem(props.item.sliid);     	
@@ -21,8 +20,7 @@ const ShoppingListItem=(props)=>{
 		}	
 		
 	let shoppingListItemInner="shoppingListItemInner";	
-	let delButton='';
-	let editButton='';
+	let delButton='';	
 	let statusButton=<td width="40"><button onClick={changeStatus} title="Splnit položku" className="green" >&#9675;</button></td>;	
 	
 	if(props.item.is_solved===1){
@@ -37,13 +35,8 @@ const ShoppingListItem=(props)=>{
 			  }
 		  event.preventDefault();
 		  }	
-		delButton=<td className="align-right" width="40"><button onClick={delItem} title="Odebrat položku" className="red" >&#10007;</button></td>;	
-		let editItem=(event)=>{ 
-			event.preventDefault();
-			}		
-		editButton=<td className="align-right" width="40"><button onClick={delItem} title="Upravit položku"  >&#128394;</button></td>;		
-		}			
-			
+		delButton=<td className="align-right" width="40"><button onClick={delItem} title="Odebrat položku" className="red" >&#10007;</button></td>;					
+		}						
 						
 	return(
 		<div className="shoppingListItem col-xs-12 col-sm-6 col-md-4 ">
@@ -54,8 +47,7 @@ const ShoppingListItem=(props)=>{
 							{statusButton}
 							<td>{props.item.name}</td>
 							<td className="align-right">{props.item.value}</td>																								
-							{delButton}
-							{editButton}												
+							{delButton}																	
 						</tr>
 					</tbody>
 				</table>

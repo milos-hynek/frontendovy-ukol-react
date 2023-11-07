@@ -3,3 +3,4 @@
 .shoppingListDetail h2, .shoppingListDetail h3, .shoppingListDetail p{margin-left:8px;margin-right:8px}
 button{height: 35px;font-size: 16px;padding: 4px;cursor: pointer;}
 .activeFilter{font-weight:bold;color: var(--blue);}
+.shoppingListDetail p{margin-bottom:0;}

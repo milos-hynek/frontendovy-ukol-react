@@ -51,19 +51,19 @@ const ShoppingListEdit=(props)=>{
 					<form className="shopingListEditForm" onSubmit={saveList} >
 						<div className="row">
 							<div className="col-xs-12 col-sm-12 col-md-12 "><h3>Upravení nákupního seznamu</h3></div>							
-							<div className="col-xs-12 col-sm-12 col-md-2 "><b>Název:</b></div>
+							<div className="col-xs-12 col-sm-12 col-md-2 align-center"><b>Název:</b></div>
 							<div className="col-xs-12 col-sm-12 col-md-10 "><input type="text" name="name" value={props.shoppingList.name} maxLength="128" className="w-100" onChange={changeName} required /></div>														
-							<div className="col-xs-12 col-sm-12 col-md-2 "><b>Popis:</b></div>							
+							<div className="col-xs-12 col-sm-12 col-md-2 align-center"><b>Popis:</b></div>							
 							<div className="col-xs-12 col-sm-12 col-md-10 "><input type="text" name="description" value={props.shoppingList.description} maxLength="512" className="w-100" onChange={changeDescription} /></div>
-							<div className="col-xs-12 col-sm-12 col-md-2 "><b>Archiv:</b></div>							
+							<div className="col-xs-12 col-sm-12 col-md-2 align-center"><b>Archiv:</b></div>							
 							<div className="col-xs-12 col-sm-12 col-md-10 ">
 								<select name="is_archived" value={props.shoppingList.is_archived} className="w-100" onChange={changeArchiv} >
 									<option value="0">Ne, nákupní seznam není archivován</option>
 									<option value="1">Ano, nákupní seznam je archivován</option>
 								</select>
 							</div>
-							<div className="col-xs-4 col-sm-8 col-md-9 ">&nbsp;</div>
-							<div className="col-xs-8 col-sm-4 col-md-3 "><button type="submit" className="w-100">Uložit</button></div>
+							
+							<div className="col-xs-12 col-sm-12 col-md-12 align-center"><button type="submit">Uložit</button></div>
 						</div>
 					</form>
 				</div>

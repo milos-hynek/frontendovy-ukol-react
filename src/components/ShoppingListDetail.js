@@ -1,6 +1,7 @@
 import "./ShoppingListDetail.css";
 import ShoppingListEdit from "./ShoppingListEdit.js";
 import ShoppingListItem from "./ShoppingListItem.js";
+import ShoppingListAddItem from "./ShoppingListAddItem.js";
 import ShoppingListMember from "./ShoppingListMember.js";
 import ShoppingListAddMember from "./ShoppingListAddMember.js";
 import {useState} from "react"
@@ -72,22 +73,23 @@ const ShoppingListDetail=(props)=>{
 				}
 			});
 		shoppingList.is_solved=completeSolved;
-		shoppingList.is_solved=completeSolved;
 		const updatedShoppingList=shoppingList;
 		setShoppingList(updatedShoppingList);		
 		refresh();		
-
-		/*shoppingList.shopping_list_members.forEach((member,index)=>{ 	
-			if(member.slmid===slmid){
-				shoppingList.shopping_list_members.splice(index,1);				
-				alert("Člen úspěšně odstraněn z nákupního seznamu.");	
-				}								
-			});				
-		const updatedShoppingList=shoppingList;
-		setShoppingList(updatedShoppingList);	
-		refresh();	*/	
 		}	
-		
+	
+	//Add some item into shopping list
+	let callbackAddItem=(data)=>{	
+		let item_id=(Math.floor(Math.random()*10000000)*10);
+		let newItem={sliid:item_id,id_shopping_list:shoppingList.slid,name:data.name,value:data.value,is_solved:0};
+		shoppingList.shopping_list_items.push(newItem);		
+		shoppingList.is_solved=0;
+		alert("Položka úspěšně přidána do nákupního seznamu.");	
+		const updatedShoppingList=shoppingList;
+		setShoppingList(updatedShoppingList);		
+		refresh();		
+		}	
+	
 	//Delete some member from shopping list
 	let callbackDeleteMember=(slmid)=>{					
 		shoppingList.shopping_list_members.forEach((member,index)=>{ 	
@@ -155,6 +157,7 @@ const ShoppingListDetail=(props)=>{
 				{shoppingList.shopping_list_items.map((item:{...})=>(
 					<ShoppingListItem key={item.sliid} item={item} currentUser={props.currentUser} owner={shoppingList.id_owner} filter={filterItems} callbackDelItem={callbackDeleteItem} callbackChangeStatusItem={callbackChangeStatusItem} />
 					))}
+				<ShoppingListAddItem currentUser={props.currentUser} owner={shoppingList.id_owner} callbackAddItem={callbackAddItem} />							
 			</div>
 			<h3>Členové</h3>
 			<div className="row">

@@ -33,7 +33,8 @@ const INITIAL_SHOPPING_LIST_DETAIL={
 		{slmid:59,id_shopping_list:7,id_user:2},
 		{slmid:62,id_shopping_list:7,id_user:10}
 		]
-	};		
+	};	
+		
 const App=()=>{	
 	//component rendering updates:
 	const [updateMain,setUpdateMain]=useState(0);
@@ -56,8 +57,7 @@ const App=()=>{
 				</div>	
 				<div className="col-xs-12 col-sm-12 col-md-12">
 					<h2>Komponenta ShoppingListDetail</h2>
-				</div>
-				
+				</div>				
 			</div>
 			<br />					
 			<ShoppingListDetail shoppingList={INITIAL_SHOPPING_LIST_DETAIL} users={INITIAL_USERS} currentUser={current_user} />
@@ -65,8 +65,7 @@ const App=()=>{
 			<h2>Přehled dat uživatelů v&nbsp;systému <small>(za&nbsp;účelem testování výše uvedené komponenty)</small></h2>
 			{INITIAL_USERS.map((user:{...})=>
 				(<div key={user.uid}>#{user.uid} - {user.degree} {user.name} {user.surname} - {user.email}</div>)
-			)}	
-			
+			)}				
 		</>
 		);
 	};

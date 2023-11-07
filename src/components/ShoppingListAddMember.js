@@ -34,7 +34,8 @@ const ShoppingListAddMember=(props)=>{
 					alert("Zadaný uživatel v nákupním seznamu již figuruje jako člen.");
 				}else{			
 					event.target.new_member_mail.value="";
-					props.callbackAddMember(user_id);  				
+					props.callbackAddMember(user_id);  	
+					toggleFormAddMember="col-xs-12 col-sm-12 col-md-12 hide-add-member";				
 				}		   			
 			}	  
 			event.preventDefault();
@@ -61,12 +62,10 @@ const ShoppingListAddMember=(props)=>{
 					<form className="shopingListAddMemberForm" onSubmit={addMember} >
 						<div className="row">
 							<div className="col-xs-12 col-sm-12 col-md-12 "><h3>Přidání nového člena</h3></div>
-							<div className="col-xs-1 col-sm-1 col-md-1 ">&nbsp;</div>
-							<div className="col-xs-11 col-sm-11 col-md-3 "><b>E-mail nového člena:</b></div>
-							<div className="col-xs-1 col-sm-1 col-md-1 ">&nbsp;</div>
-							<div className="col-xs-11 col-sm-11 col-md-3 "><input type="email" name="new_member_mail" className="w-100" required /></div>
-							<div className="col-xs-1 col-sm-1 col-md-1 ">&nbsp;</div>
-							<div className="col-xs-11 col-sm-11 col-md-3 "><button type="submit" className="w-100">Dokončit přidávání</button></div>
+							
+							<div className="col-xs-12 col-sm-4 col-md-4 align-center"><b>E-mail nového člena:</b></div>				
+							<div className="col-xs-12 col-sm-8 col-md-4 "><input type="email" name="new_member_mail" className="w-100" required /></div>							
+							<div className="col-xs-12 col-sm-12 col-md-4 align-center"><button type="submit">Dokončit přidání</button></div>
 						</div>
 					</form>
 				</div>
